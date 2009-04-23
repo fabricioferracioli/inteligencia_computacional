@@ -35,6 +35,8 @@ dw1 = [3*[0], 3*[0], 3*[0]]
 
 Eta = 1
 
+epocas = 1
+
 def hj(entrada):
     for j in range(1,B):
         expoente = 0
@@ -70,21 +72,27 @@ def deltaw1ij(entrada):
     for i in range(A):
         for j in range(1,B):
             dw1[i][j-1] = Eta * d1j[j] * x[entrada][i]
-            print '%f * %f * %f'%(Eta, d1j[j], x[entrada][i])
             w1[i][j-1] += dw1[i][j-1]
 
-hj(0)
-oj()
-delta2j()
-delta1j()
-deltaw2ij()
-deltaw1ij(0)
+for i in range(epocas):
+    for entrada in range(len(x)):
 
-print 'h = %s\n'%(h)
-print 'o = %s\n'%(o)
-print 'delta2 = %s\n'%(d2j)
-print 'delta1 = %s\n'%(d1j)
-print 'delta w2 = %s\n'%(dw2)
-print 'w2 = %s\n'%(w2)
-print 'delta w1 = %s\n'%(dw1)
-print 'w1 = %s\n'%(w1)
+        hj(entrada)
+        oj()
+        delta2j()
+        delta1j()
+        deltaw2ij()
+        deltaw1ij(entrada)
+
+        print 'Apresentacao da entrada %i na epoca %i \n'%(entrada+1, i+1)
+
+        print 'h = %s\n'%(h)
+        print 'o = %s\n'%(o)
+        print 'delta2 = %s\n'%(d2j)
+        print 'delta1 = %s\n'%(d1j)
+        print 'delta w2 = %s\n'%(dw2)
+        print 'w2 = %s\n'%(w2)
+        print 'delta w1 = %s\n'%(dw1)
+        print 'w1 = %s\n'%(w1)
+
+        print '\n-----------------------\n'
